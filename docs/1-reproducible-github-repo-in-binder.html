@@ -290,8 +290,8 @@ div.csl-indent {
 <p>However, this <code>install.R</code> file can contain any R code. You can install packages in all the usual ways, for example:</p>
 <p>To install from CRAN:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To installs a certain package version from CRAN, can also install versions of packages that were archived on CRAN:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">:</span><span class="fu">install_version</span>(<span class="st">"MortalitySmooth"</span>) <span class="co"># </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To installs a certain package version from CRAN, can also install versions of packages that were archived on CRAN (by default, installs the latest available version, even if the package is archived):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">:</span><span class="fu">install_version</span>(<span class="st">"MortalitySmooth"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To install any package from GitHub:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MPIDR/rsocsim"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -322,7 +322,7 @@ div.csl-indent {
 </figure>
 </div>
 <p>Now edit the <code>Dockerfile</code> and <code>install.R</code> files in your repository to include the archived R packages that you found. You can also change the <code>install.R</code> file to install any other R packages that you need for your project.</p>
-<p>Feel free to remove the <code>main.Rmd</code> file in the repository and add your own <code>.Rmd</code> or <code>.R</code> file with some test code that loads the packages you installed and runs a short (at least one line) analysis.</p>
+<p>Feel free to remove the <code>main.Rmd</code> file in the repository and add your own <code>.Rmd</code> or <code>.R</code> file with some test code that loads the packages you installed and runs a short (at least one line) analysis. One good idea is to use the code from the package vignette or from the package documentation.</p>
 <p>Make sure you edit the code of the <code>README.md</code> in your forked repo, so that the button <img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder"> actually launches your repository, and not the original one. Instructions on how to do that are in the <code>README.md</code> file itself.</p>
 <p>Paste the link to your repository in a new <a href="https://github.com/e-kotov/2024-mpidr-summer-incubator-containers/issues" target="_blank">Issue</a> in the repository of this tutorial, so that others can see your work and try to run your container in Binder.</p>
 
