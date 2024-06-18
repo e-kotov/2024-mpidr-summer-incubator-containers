@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Containers for Computational Reproducibility - About</title>
+<title>Containers for Computational Reproducibility - 0. Get Familiar with Docker and Binder</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -64,6 +84,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./1-reproducible-github-repo-in-binder.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,6 +124,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -116,9 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Containers for Computational Reproducibility
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./0-how-docker-and-binder-work.html">0. Get Familiar with Docker and Binder</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -154,10 +178,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Workshop Introduction</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./0-how-docker-and-binder-work.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">0. Get Familiar with Docker and Binder</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Tutorials</span></a>
+ <span class="menu-text">Tasks</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -166,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./1-reproducible-github-repo-in-binder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1. Reproducible GitHub Repository in Binder</span></a>
+ <span class="menu-text">1. Make your own repository reproducible in Binder</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -179,18 +209,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
     </ul>
     </div>
-    
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="4">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#real-world-examples" id="toc-real-world-examples" class="nav-link active" data-scroll-target="#real-world-examples">Real world examples</a></li>
+  <li><a href="#try-the-example-repository-live-demo" id="toc-try-the-example-repository-live-demo" class="nav-link" data-scroll-target="#try-the-example-repository-live-demo">Try the example repository live-demo</a></li>
+  <li><a href="#explore-how-containers-work" id="toc-explore-how-containers-work" class="nav-link" data-scroll-target="#explore-how-containers-work">Explore how containers work</a>
+  <ul>
+  <li><a href="#dockerfile" id="toc-dockerfile" class="nav-link" data-scroll-target="#dockerfile">Dockerfile</a></li>
+  <li><a href="#install.r" id="toc-install.r" class="nav-link" data-scroll-target="#install.r">install.R</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">0. Get Familiar with Docker and Binder</h1>
 </div>
 
 
@@ -207,17 +249,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>About this site</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<p>The goal of this tutorial is to show you how to create a reproducible GitHub repository that can be run in Binder. This is a great way to share your code with others, as they can run your code in the cloud using just their web browser without having to install anything on their local machine. There are some limitations, such <a href="https://mybinder.readthedocs.io/en/latest/about/user-guidelines.html#resources-available" target="_blank">operating memory limit of 1-2 GB</a> and <a href="https://mybinder.readthedocs.io/en/latest/about/user-guidelines.html#how-long-will-my-binder-session-last" target="_blank">temporary nature of such environment</a>, but for most small to medium-sized projects and for someone to just quickly inspect your code, this should be sufficient.</p>
+<section id="real-world-examples" class="level2">
+<h2 class="anchored" data-anchor-id="real-world-examples">Real world examples</h2>
+<p>Below you can find real-world examples of such repositories that accompany scientific papers:</p>
+<ul>
+<li><p><a href="https://github.com/Gchism94/NestArchOrg" target="_blank">https://github.com/Gchism94/NestArchOrg</a></p></li>
+<li><p><a href="https://github.com/bbartholdy/mb11CalculusPilot" target="_blank">https://github.com/bbartholdy/mb11CalculusPilot</a></p></li>
+<li><p><a href="https://github.com/parkgayoung/racisminarchy" target="_blank">https://github.com/parkgayoung/racisminarchy</a></p></li>
+</ul>
+<p>There is also a minimal example <span class="citation" data-cites="kotov.deneke2024">(<a href="#ref-kotov.deneke2024" role="doc-biblioref">Kotov and Deneke 2024</a>)</span> that you can see in action below. Mind you, that the video is sped up, and in reality, it may takes a few minutes to start the container.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/videos/fig_02_running_the_container.gif" class="img-fluid figure-img"></p>
+<figcaption>Performing gridsample technique in a cloud cointainer in Binder</figcaption>
+</figure>
+</div>
+</section>
+<section id="try-the-example-repository-live-demo" class="level2">
+<h2 class="anchored" data-anchor-id="try-the-example-repository-live-demo">Try the example repository live-demo</h2>
+<p>Go to this <a href="https://github.com/Population-Dynamics-Lab/grid-sample-containerized" target="_blank">example repository</a>. Try to run the contents of the repository in a container in the cloud using Binder by clicking on the badge that looks like this: <img src="https://mybinder.org/badge_logo.svg" class="img-fluid" alt="Binder">.</p>
+<p>When you do so, you will be presented with an RStudio interface in your web browser. The actual RStudio and R will be running in a container on a server provided by one of the participants of the <a href="https://mybinder.readthedocs.io/en/latest/about/federation.html" target="_blank">The BinderHub Federation</a>.</p>
+<p>How does this magic happen?</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+  A[User passes GitHub repository URL to mybinder.org]
+  A --&gt; Z[BinderHub starts a cloud server with Docker software]
+  Z --&gt; B[BinderHub downloads files from given repository to create a Docker image]
+  B --&gt; C{Docker image already in temp storage?}
+  C -- Yes --&gt; D[BinderHub pulls Docker image from temp storage]
+  C -- No --&gt; E[BinderHub Builds Docker image]
+  E --&gt; F[BinderHub pushes Docker image to temp storage]
+  F --&gt; D
+  D --&gt; G[BinderHub runs the Docker image]
+  G --&gt; H[User gets access to the running image in a web browser]
+</pre>
+</div>
+<p></p></figure><p></p>
 </div>
 </div>
+</div>
+</section>
+<section id="explore-how-containers-work" class="level2">
+<h2 class="anchored" data-anchor-id="explore-how-containers-work">Explore how containers work</h2>
+<p>If you look inside the <a href="https://github.com/Population-Dynamics-Lab/grid-sample-containerized" target="_blank">example repository</a>, you will see that it contains a <a href="https://github.com/Population-Dynamics-Lab/grid-sample-containerized/blob/main/Dockerfile" target="_blank"><code>Dockerfile</code></a> and a few other essential files to create and run a container with RStudio. Here’s a breakdown of what each file does and how you can change them to set up your container.</p>
+<section id="dockerfile" class="level3">
+<h3 class="anchored" data-anchor-id="dockerfile">Dockerfile</h3>
+<p><a href="https://github.com/Population-Dynamics-Lab/grid-sample-containerized/blob/main/Dockerfile" target="_blank"><code>Dockerfile</code></a> defines how your container is created. It is an instruction set that container building software, such as Docker, uses to create a container image. It is similar to how you can type commands in the terminal to install software on your computer, but in this case, you are installing software inside a container and the syntax of a Dockerfile is a bit different, as it prefixes each command with a keyword such as <code>FROM</code>, <code>COPY</code>, <code>RUN</code>, etc. You can find more details in <a href="https://docs.docker.com/build/building/packaging/" target="_blank">the Docker documentation</a>.</p>
+<ol type="1">
+<li>First we tell the container software to use the <a href="https://github.com/hagachi/rocker-versioned2/blob/30f354ba627c0148581426abd588b1e770802570/dockerfiles/binder_4.0.3.Dockerfile" target="_blank"><code>rocker/binder:4.0.1</code></a> container image as a base. This is a container image that someone has already created and shared with the community. In this case it’s created by the <a href="https://www.rocker-project.org/" target="_blank">Rocker Project</a>. It already has Linux operating system, R, RStudio and many R packages installed.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/binder:4.0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you were building your own highly specialised container, you would probably start with a more basic container image, such as <code>ubuntu:20.04</code> or <code>debian:bullseye</code>, and then install all the software you need from scratch. This is more work, but it gives you more control over what is installed in the container.</p>
+<ol start="2" type="1">
+<li>Next we copy all the files from the repository into the container. This is done with the <code>COPY</code> command. This way, when the container is started, all the files from the repository are available inside the container.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--chown=${NB_USER}</span> . ${HOME}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you were to build a container not for the GitHub repository and Binder, but for use in the high-performance computing cluster or on your own computer, you would probably want to copy only the essential files and not the whole repository. You would also not include the data or the analysis code, but would only include configuration files that define which software should be inside the container.</p>
+<ol start="3" type="1">
+<li>The last line of the <code>Dockerfile</code> is the <code>RUN</code> command that installs R packages that are not part of the Rocker container image. You can find out empirically which packages are missing by trying to run your code in the container and seeing which packages are missing. Or you can read the source code of the container creation script (e.g.&nbsp;for <a href="https://github.com/hagachi/rocker-versioned2/blob/30f354ba627c0148581426abd588b1e770802570/scripts/install_verse.sh" target="_blank">Rocker Verse</a>, <a href="https://github.com/hagachi/rocker-versioned2/blob/30f354ba627c0148581426abd588b1e770802570/scripts/install_tidyverse.sh" target="_blank">Rocker Tidyverse</a>, or <a href="https://github.com/hagachi/rocker-versioned2/blob/30f354ba627c0148581426abd588b1e770802570/scripts/install_geospatial.sh" data-targer="_blank">Rocker Geospatial</a>) and see which packages are pre-installed there.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="cf">if</span> <span class="bu">[</span> <span class="ot">-f</span> install.R <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span> <span class="ex">R</span> <span class="at">--quiet</span> <span class="at">-f</span> install.R<span class="kw">;</span> <span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="install.r" class="level3">
+<h3 class="anchored" data-anchor-id="install.r">install.R</h3>
+<p><a href="https://github.com/Population-Dynamics-Lab/grid-sample-containerized/blob/main/install.R" target="_blank"><code>install.R</code></a> file contains the R code that installs the <code>GridSample</code> package. This package is not included in the Rocker container image, so we need to install it manually. In this case, a very specific version of the package is installed, because this specific version had a certain bug fixed.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"nrukt00vt/gridsample@03c2d10134cbf94dc8c7452c3a5967c8624e260a"</span>, <span class="at">force =</span> <span class="cn">TRUE</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, this <code>install.R</code> file can contain any R code. You can install packages in all the usual ways, for example:</p>
+<p>To install from CRAN:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To installs a certain package version from CRAN, can also install versions of packages that were archived on CRAN (by default, installs the latest available version, even if the package is archived):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">:</span><span class="fu">install_version</span>(<span class="st">"MortalitySmooth"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To install any package from GitHub:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"MPIDR/rsocsim"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
-</main> <!-- /main -->
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-kotov.deneke2024" class="csl-entry" role="listitem">
+Kotov, Egor, and Esther Deneke. 2024. <span>“Expanding the <span>Lifespan</span> of <span>Software</span> for <span>Demographic Analysis</span> with <span>Containers</span>: <span>An Application</span> of <span>Spatial Sampling</span>.”</span> <em>The Denominator. Population Dynamics Lab</em>. <a href="https://doi.org/10.6069/WY8K-D973">https://doi.org/10.6069/WY8K-D973</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -712,25 +831,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -771,6 +929,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Workshop Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Workshop Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./1-reproducible-github-repo-in-binder.html" class="pagination-link" aria-label="1. Make your own repository reproducible in Binder">
+        <span class="nav-page-text">1. Make your own repository reproducible in Binder</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

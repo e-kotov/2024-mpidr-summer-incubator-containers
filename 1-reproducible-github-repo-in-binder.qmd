@@ -1,122 +1,62 @@
 ---
-title: "1. Reproducible GitHub Repository in Binder"
+title: "1. Make your own repository reproducible in Binder"
 from: markdown+emoji
 code-annotations: hover
 ---
 
-Skip to the Task: [Make your own repository reproducible in Binder](#task_01)
 
-The goal of this tutorial is to show you how to create a reproducible GitHub repository that can be run in Binder. This is a great way to share your code with others, as they can run your code in the cloud using just their web browser without having to install anything on their local machine. There are some limitations, such [operating memory limit of 1-2 GB](https://mybinder.readthedocs.io/en/latest/about/user-guidelines.html#resources-available){target="_blank"} and [temporary nature of such environment](https://mybinder.readthedocs.io/en/latest/about/user-guidelines.html#how-long-will-my-binder-session-last){target="_blank"}, but for most small to medium-sized projects and for someone to just quickly inspect your code, this should be sufficient.
+### The Goal
 
-## Real world examples
-
-Below you can find real-world examples of such repositories that accompany scientific papers:
-
-- [https://github.com/Gchism94/NestArchOrg](https://github.com/Gchism94/NestArchOrg){target="_blank"}
-
-- [https://github.com/bbartholdy/mb11CalculusPilot](https://github.com/bbartholdy/mb11CalculusPilot){target="_blank"}
-
-- [https://github.com/parkgayoung/racisminarchy](https://github.com/parkgayoung/racisminarchy){target="_blank"}
-
-
-There is also a minimal example [@kotov.deneke2024] that you can see in action below:
-
-![](media/videos/fig_02_running_the_container.gif){fig-align="left"}
-
-
-
-## Try the example repository live-demo
-
-Go to this [example repository](https://github.com/Population-Dynamics-Lab/grid-sample-containerized){target="_blank"} . Try to run the contents of the repository in a container in the cloud using Binder by clicking on the badge that looks like this: ![Binder](https://mybinder.org/badge_logo.svg).
-
-When you do so, you will be presented with an RStudio interface in your web browser. The actual RStudio and R will be runing in a container on a server provided by one of the participants of the [The BinderHub Federation](https://mybinder.readthedocs.io/en/latest/about/federation.html){target="_blank"}.
-
-## Examine how containers work
-
-If you look inside the [example repository](https://github.com/Population-Dynamics-Lab/grid-sample-containerized){target="_blank"}, you will see that it contains a [`Dockerfile`](https://github.com/Population-Dynamics-Lab/grid-sample-containerized/blob/main/Dockerfile){target="_blank"} and a few other essential files to create and run a container with RStudio. Here's a breakdown of what each file does and how you can change them to set up your container.
-
-### Dockerfile
-
-[`Dockerfile`](https://github.com/Population-Dynamics-Lab/grid-sample-containerized/blob/main/Dockerfile){target="_blank"} defines how your container is created. It is an instruction set that container building software, such as Docker, uses to create a container image. It is similar to how you can type commands in the terminal to install software on your computer, but in this case, you are installing software inside a container and the syntax of a Dockerfile is a bit different, as it prefixes each command with a keyword such as `FROM`, `COPY`, `RUN`, etc. You can find more details in [the Docker documentation](https://docs.docker.com/build/building/packaging/){target="_blank"}.
-
-1. First we tell the container software to use the [`rocker/binder:4.0.1`](https://github.com/hagachi/rocker-versioned2/blob/30f354ba627c0148581426abd588b1e770802570/dockerfiles/binder_4.0.3.Dockerfile){target="_blank"} container image as a base. This is a container image that someone has already created and shared with the community. In this case it's created by the [Rocker Project](https://www.rocker-project.org/){target="_blank"}. It already has Linux operating system, R, RStudio and many R packages installed.
-
-```Dockerfile
-FROM rocker/binder:4.0.1
-```
-
-If you were building your own highly specialised container, you would probably start with a more basic container image, such as `ubuntu:20.04` or `debian:bullseye`, and then install all the software you need from scratch. This is more work, but it gives you more control over what is installed in the container.
-
-2. Next we copy all the files from the repository into the container. This is done with the `COPY` command. This way, when the container is started, all the files from the repository are available inside the container.
-
-```Dockerfile
-COPY --chown=${NB_USER} . ${HOME}
-```
-
-If you were to build a container not for the GitHub repository and Binder, but for use in the high-performance computing cluster or on your own computer, you would probably want to copy only the essential files and not the whole repository. You would also not include the data or the analysis code, but would only include configuration files that define which software should be inside the container.
-
-3. The last line of the `Dockerfile` is the `RUN` command that installs R packages that are not part of the Rocker container image. You can find out empirically which packages are missing by trying to run your code in the container and seeing which packages are missing. Or you can read the source code of the container creation script (e.g. for [Rocker Verse](https://github.com/hagachi/rocker-versioned2/blob/30f354ba627c0148581426abd588b1e770802570/scripts/install_verse.sh){target="_blank"}, [Rocker Tidyverse](https://github.com/hagachi/rocker-versioned2/blob/30f354ba627c0148581426abd588b1e770802570/scripts/install_tidyverse.sh){target="_blank"}, or [Rocker Geospatial](https://github.com/hagachi/rocker-versioned2/blob/30f354ba627c0148581426abd588b1e770802570/scripts/install_geospatial.sh){targer="_blank"}) and see which packages are pre-installed there.
-
-```Dockerfile
-RUN if [ -f install.R ]; then R --quiet -f install.R; fi
-```
-
-### install.R
-
-[`install.R`](https://github.com/Population-Dynamics-Lab/grid-sample-containerized/blob/main/install.R){target="_blank"} file contains the R code that installs the `GridSample` package. This package is not included in the Rocker container image, so we need to install it manually. In this case, a very specific version of the package is installed, because this specific version had a certain bug fixed.
-
-```r
-remotes::install_github("nrukt00vt/gridsample@03c2d10134cbf94dc8c7452c3a5967c8624e260a", force = TRUE, dependencies = TRUE)
-```
-
-However, this `install.R` file can contain any R code. You can install packages in all the usual ways, for example:
-
-To install from CRAN:
-
-```r
-install.packages("ggplot2")
-```
-
-To installs a certain package version from CRAN, can also install versions of packages that were archived on CRAN (by default, installs the latest available version, even if the package is archived):
-
-```r
-remotes:install_version("MortalitySmooth")
-```
-
-To install any package from GitHub:
-
-```r
-remotes::install_github("MPIDR/rsocsim")
-```
-
-
-
-## Task: Make your own repository reproducible in Binder{#task_01}
-
-**Goal:** Create your own repository for a hypothetical research project. Make it future proof with a Docker container that can be run in the cloud using Binder. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.
+Create your own repository for a hypothetical research project. Make it future proof with a Docker container that can be run in the cloud using Binder. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.
 
 To achieve this goal, find a few archived R packages on [CRAN](https://cran.r-project.org/){target="_blank"}. A few notable examples are [`rgdal`](https://cran.r-project.org/package=rgdal){target="_blank"}, [`MortalitySmooth`](https://cran.r-project.org/package=MortalitySmooth){target="_blank"} and many others. Remember,  "40% of all packages ever in CRAN got at one point archived"[^1]. CRAN does not have it's own section with archived packages, so you might want to look at [CRANhaven Dashboard](https://www.cranhaven.org/dashboard-live.html){target="_blank"} is also a great place to start, over there you can find recently archived packages. Remmber, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using `remotes::install_version()` function from the `remotes` package instead of `install.packages()`, but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.
 
+### Fork the repository
+
 Fork (copy) [this repository](https://github.com/Population-Dynamics-Lab/grid-sample-containerized){target="_blank"} to your GitHub account. To do that, click on the "Fork" button in the top right corner of the repository page.
 
-![How to fork a repository](media/images/001-001-fork-repo.png){fig-align="left"}
+![How to fork a repository](media/images/fork-repo.png){fig-align="left"}
+
+### Edit the files
+
+#### Simple editing one file at a time
 
 Once you have forked the repository, you can clone it to your local machine for editing. You can also edit the files directly on GitHub by clicking on the file you want to edit and then clicking on the pencil icon.
 
-![How to edit a file on GitHub](media/images/001-003-edit-on-github.png){fig-align="left"}
+![How to edit a file on GitHub](media/images/edit-on-github.png){fig-align="left"}
 
-Another great feature of GitHub is that you can edit all files in the repository directly in a VSCode-like editor online. To do that, simply push the on the `.` (dot) key on your keyboard, while you are in the repository. You will notice that this changes the current URL in the browser to `https://github.dev/username/repo-name`. So another option is to manually replace the `github.com` part of the URL with `github.dev`. This way you do not need to clone the repository to your local machine and you can edit the files directly on GitHub.
+When done editing, click on the "Commit changes" button.
 
-![Left: A GitHub repository; Right: Same repository editable online in a web browser with VSCode-like interface](media/images/001-002-repo-vs-vscode.png){width=100%}
+![Commit changes on GitHub](media/images/commit-changes.png){fig-align="left" height=200px}
+
+#### Advanced multi-file editing
+
+Another great feature of GitHub is that you can edit all files in the repository directly in a VSCode-like editor online right in your web browser. To do that, simply push the on the `.` (dot) key on your keyboard, while you are in the repository.
+
+You will notice that this changes the current URL in the browser to `https://github.dev/<username>/<repo-name>`. So another option is to manually replace the `github.com` part of the URL with `github.dev`. This way you do not need to clone the repository to your local machine for editing.
+
+![Left: A GitHub repository; Right: Same repository editable online in a web browser with VSCode-like interface](media/images/repo-vs-vscode.png){width=100%}
+
+When done editing the files, you can commit the changes in github.dev, you can commit changes by clicking on the "Source Control" icon in the left sidebar, entering a commit message, and clicking on the checkmark icon to commit the changes.
+
+![Commit changes in github.dev](media/images/commit-changes-github-dev.png){fig-align="left"}
+
+### Edit the files
 
 Now edit the `Dockerfile` and `install.R` files in your repository to include the archived R packages that you found. You can also change the `install.R` file to install any other R packages that you need for your project.
 
 Feel free to remove the `main.Rmd` file in the repository and add your own `.Rmd` or `.R` file with some test code that loads the packages you installed and runs a short (at least one line) analysis. One good idea is to use the code from the package vignette or from the package documentation.
 
-Make sure you edit the code of the `README.md` in your forked repo, so that the button  ![Binder](https://mybinder.org/badge_logo.svg) actually launches your repository, and not the original one. Instructions on how to do that are in the `README.md` file itself.
+Make sure you edit the code of the `README.md` in your forked repo, so that the button ![Binder](https://mybinder.org/badge_logo.svg) actually launches your repository, and not the original one. Instructions on how to do that are in the `README.md` file itself.
+
+### Share your work
 
 Paste the link to your repository in a new [Issue](https://github.com/e-kotov/2024-mpidr-summer-incubator-containers/issues){target="_blank"} in the repository of this tutorial, so that others can see your work and try to run your container in Binder.
 
+
+### Discussion
+
+Now that you have done your own reproducible repository, think for a moment, how future proof is that? What does the reproducibility of your repository depend on? How can you further future-proof it?
 
 [^1]: [CRANhaven: Study: Many Archived Packages Return to CRAN](https://www.cranhaven.org/cran-archiving-stats.html#packages-archived-over-all){target="_blank"}
 

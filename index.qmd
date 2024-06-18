@@ -39,6 +39,7 @@ To participate in the workshop, we recommend that you have a [GitHub](https://gi
 You may also want to install [Docker](https://docs.docker.com/get-docker/){target="_blank"} on your computer (for Windows, macOS or Linux).
 For macOS we also highly recommend the free version of [OrbStack](https://orbstack.dev/download){target="_blank"} as a complete and lightweight Docker Desktop replacement.
 
+
 ## Expected learning outcomes
 
 -   Able to explain the concept of containers and their role in computational reproducibility
@@ -54,5 +55,5 @@ The tasks that you can do in the workshop depend on your skill level with GitHub
 |                                                                                                                                                     |                                                                                                                            |
 |-------------------------|---------------------------|
 | **Your skills**                                                                                                                                     | **Tutorial to follow**                                                                                                     |
-| You have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub | [1. Create a reproducible GitHub repository that runs in the cloud using Binder](1-reproducible-github-repo-in-binder.qmd) |
+| You have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub | [1. Make your own repository reproducible in Binder](1-reproducible-github-repo-in-binder.qmd) |
 | You are familiar with basic command line (terminal) commands such as `git clone`, `cd`, `mkdir` or not afraid to try them out.                      | [2. Build your own Docker container image and run it (locally or in the cloud)](2-build-docker-container-image.qmd)       |

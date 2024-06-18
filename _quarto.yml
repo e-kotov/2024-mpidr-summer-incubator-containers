@@ -20,7 +20,8 @@ website:
         href: https://x.com/MPIDRnews
     contents:
       - index.qmd
-      - section: "Tutorials"
+      - 0-how-docker-and-binder-work.qmd
+      - section: "Tasks"
         contents:
           - 1-reproducible-github-repo-in-binder.qmd
           - 2-build-docker-container-image.qmd
@@ -42,11 +43,12 @@ format:
     toc: true
     toc-depth: 4
     toc-expand: 4
-    toc-location: left
+    toc-location: right
     code-overflow: wrap
     grid:
       body-width: 800px
-  
+    mermaid:
+      theme: neutral
 
 bibliography: references.bib
 bibliographystyle: mla
