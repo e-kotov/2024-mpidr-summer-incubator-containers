@@ -1,0 +1,5 @@
+---
+title: "2. Build a Docker container image"
+from: markdown+emoji
+code-annotations: hover
+---

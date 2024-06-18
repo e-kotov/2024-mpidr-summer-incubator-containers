@@ -1,0 +1,58 @@
+---
+title: "Workshop Introduction"
+
+authors:
+  - name: Esther Denecke
+    url: https://www.demogr.mpg.de/de/ueber_uns_6113/mitarbeiter_innen_1899/esther_dorothea_denecke_4094/
+    orcid: 0009-0006-0336-6528
+    affiliations:
+      - ref: mpidr
+      - ref: unirostock
+  - name: Egor Kotov
+    url: https://www.ekotov.pro/
+    orcid: 0000-0001-6690-5345
+    affiliations:
+      - ref: mpidr
+      - ref: upf
+
+affiliations:
+  - id: mpidr
+    name: Max Planck Institute for Demographic Research
+    city: Rostock
+    country: Germany
+    url: https://demogr.mpg.de/
+  - id: upf
+    name: Universitat Pompeu Fabra
+    city: Barcelona
+    country: Spain
+    url: https://www.upf.edu/
+  - id: unirostock
+    name: University of Rostock
+    city: Rostock
+    country: Germany
+    url: https://www.uni-rostock.de/
+---
+
+This website provides supporting materials for the workshop **Containers for Computational Reproducibility** which is part of the [Population and Social Data Science Summer Incubator Program 2024](https://www.demogr.mpg.de/en/news_events_6123/news_press_releases_4630/news/population_and_social_data_science_summer_incubator_program_2024_13112){target="_blank"} organized by the [Max Planck Institute for Demographic Research](https://demogr.mpg.de/){target="_blank"} in Rostock, Germany.
+
+To participate in the workshop, we recommend that you have a [GitHub](https://github.com/){target="_blank"} account and a [Docker Hub](https://hub.docker.com/){target="_blank"} account.
+You may also want to install [Docker](https://docs.docker.com/get-docker/){target="_blank"} on your computer (for Windows, macOS or Linux).
+For macOS we also highly recommend the free version of [OrbStack](https://orbstack.dev/download){target="_blank"} as a complete and lightweight Docker Desktop replacement.
+
+## Expected learning outcomes
+
+-   Able to explain the concept of containers and their role in computational reproducibility
+
+-   Able to create a Docker container with RStudio and R of a specific version and with specific archived R packages
+
+-   Able to run create a GitHub repository that can be executed in the cloud using [Binder](https://mybinder.org/){target="_blank"}
+
+## What to do in the workshop
+
+The tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands.
+
+|                                                                                                                                                     |                                                                                                                            |
+|-------------------------|---------------------------|
+| **Your skills**                                                                                                                                     | **Tutorial to follow**                                                                                                     |
+| You have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub | [1. Create a reproducible GitHub repository that runs in the cloud using Binder](1-reproducible-github-repo-in-binder.qmd) |
+| You are familiar with basic command line (terminal) commands such as `git clone`, `cd`, `mkdir` or not afraid to try them out.                      | [2. Build your own Docker container image and run it (locally or in the cloud)](2-build-docker-container-image.qmd)       |

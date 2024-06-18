@@ -1,0 +1,43 @@
+---
+title: "1. Reproducible GitHub Repository in Binder"
+from: markdown+emoji
+code-annotations: hover
+---
+
+The goal of this tutorial is to show you how to create a reproducible GitHub repository that can be run in Binder. This is a great way to share your code with others, as they can run your code in the cloud using just their web browser without having to install anything on their local machine. There are some limitations, such [operating memory limit of 1-2 GB](https://mybinder.readthedocs.io/en/latest/about/user-guidelines.html#resources-available){target="_blank"} and [temporary nature of such environment](https://mybinder.readthedocs.io/en/latest/about/user-guidelines.html#how-long-will-my-binder-session-last), but for most small to medium-sized projects and for someone to just quickly inspect your code, this should be sufficient.
+
+# Examples
+
+Below you can find real-world examples of such repositories that accompany scientific papers:
+
+- [https://github.com/Gchism94/NestArchOrg](https://github.com/Gchism94/NestArchOrg){target="_blank"}
+
+- [https://github.com/bbartholdy/mb11CalculusPilot](https://github.com/bbartholdy/mb11CalculusPilot){target="_blank"}
+
+- [https://github.com/parkgayoung/racisminarchy](https://github.com/parkgayoung/racisminarchy){target="_blank"}
+
+
+There is also a minimal example [@kotov.deneke2024] that you can see in action below:
+
+![](media/videos/fig_02_running_the_container.gif){fig-align="left"}
+
+
+
+# First steps
+
+Go to this repository [placeholder]() and fork it to your GitHub account. 
+
+![How to fork a repository](media/images/001-001-fork-repo.png){fig-align="left"}
+
+Once you have forked the repository, you can either clone it to your local machine for editing, however, you can also edit the files directly on GitHub by clicking on the file you want to edit and then clicking on the pencil icon. Another great feature of GitHub is that you can edit all files in the repository directly in a VSCode-like editor online. To do that, simply push the on the `.` (dot) key on your keyboard, while you are in the repository. You will notice that this changes the current URL in the browser to `https://github.dev/username/repo-name`. So another option is to manually replace the `github.com` part of the URL with `github.dev`. This way you do not need to clone the repository to your local machine and you can edit the files directly on GitHub.
+
+![Left: A GitHub repository; Right: Same repository editable online in a web browser with VSCode-like interface](media/images/001-002-repo-vs-vscode.png)
+
+
+
+
+
+
+
+
+

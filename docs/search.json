@@ -1,0 +1,49 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Workshop Introduction",
+    "section": "",
+    "text": "This website provides supporting materials for the workshop Containers for Computational Reproducibility which is part of the Population and Social Data Science Summer Incubator Program 2024 organized by the Max Planck Institute for Demographic Research in Rostock, Germany.\nTo participate in the workshop, we recommend that you have a GitHub account and a Docker Hub account. You may also want to install Docker on your computer (for Windows, macOS or Linux). For macOS we also highly recommend the free version of OrbStack as a complete and lightweight Docker Desktop replacement.",
+    "crumbs": [
+      "Workshop Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#expected-learning-outcomes",
+    "href": "index.html#expected-learning-outcomes",
+    "title": "Workshop Introduction",
+    "section": "Expected learning outcomes",
+    "text": "Expected learning outcomes\n\nAble to explain the concept of containers and their role in computational reproducibility\nAble to create a Docker container with RStudio and R of a specific version and with specific archived R packages\nAble to run create a GitHub repository that can be executed in the cloud using Binder",
+    "crumbs": [
+      "Workshop Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#what-to-do-in-the-workshop",
+    "href": "index.html#what-to-do-in-the-workshop",
+    "title": "Workshop Introduction",
+    "section": "What to do in the workshop",
+    "text": "What to do in the workshop\nThe tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands.\n\n\n\nYour skills\nTutorial to follow\n\n\nYou have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub\n1. Create a reproducible GitHub repository that runs in the cloud using Binder\n\n\nYou are familiar with basic command line (terminal) commands such as git clone, cd, mkdir or not afraid to try them out.\n2. Build your own Docker container image and run it.",
+    "crumbs": [
+      "Workshop Introduction"
+    ]
+  },
+  {
+    "objectID": "1-reproducible-github-repo-in-binder.html",
+    "href": "1-reproducible-github-repo-in-binder.html",
+    "title": "1. Reproducible GitHub Repository in Binder",
+    "section": "",
+    "text": "The goal of this tutorial is to show you how to create a reproducible GitHub repository that can be run in Binder. This is a great way to share your code with others, as they can run your code in the cloud using just their web browser without having to install anything on their local machine. There are some limitations, such operating memory limit of 1-2 GB and temporary nature of such environment, but for most small to medium-sized projects and for someone to just quickly inspect your code, this should be sufficient.\n\nExamples\nBelow you can find real-world examples of such repositories that accompany scientific papers:\n\nhttps://github.com/Gchism94/NestArchOrg\nhttps://github.com/bbartholdy/mb11CalculusPilot\nhttps://github.com/parkgayoung/racisminarchy\n\nThere is also a minimal example (Kotov and Deneke 2024) that you can see in action below:\n\n\n\n\n\n\n\nFirst steps\nGo to this repository placeholder and fork it to your GitHub account.\n\n\n\nHow to fork a repository\n\n\nOnce you have forked the repository, you can either clone it to your local machine for editing, however, you can also edit the files directly on GitHub by clicking on the file you want to edit and then clicking on the pencil icon. Another great feature of GitHub is that you can edit all files in the repository directly in a VSCode-like editor online. To do that, simply push the on the . (dot) key on your keyboard, while you are in the repository. You will notice that this changes the current URL in the browser to https://github.dev/username/repo-name. So another option is to manually replace the github.com part of the URL with github.dev. This way you do not need to clone the repository to your local machine and you can edit the files directly on GitHub.\n\n\n\nLeft: A GitHub repository; Right: Same repository editable online in a web browser with VSCode-like interface\n\n\n\n\n\n\nReferences\n\nKotov, Egor, and Esther Deneke. 2024. “Expanding the Lifespan of Software for Demographic Analysis with Containers: An Application of Spatial Sampling.” The Denominator. Population Dynamics Lab. https://doi.org/10.6069/WY8K-D973.",
+    "crumbs": [
+      "1. Reproducible GitHub Repository in Binder"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]

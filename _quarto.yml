@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+
+about:
+  template: solana
+
+
+lang: en
+website:
+  title: "Containers for Computational Reproducibility"
+  # favicon: /images/favicon.png
+  site-url: https://e-kotov.github.io/2024-mpidr-summer-incubator-containers/
+  repo-url: https://github.com/e-kotov/2024-mpidr-summer-incubator-containers
+  sidebar:
+    style: "docked"
+    search: true
+    tools: 
+      - icon: github
+        text: Github
+        href: https://github.com/e-kotov/2024-mpidr-summer-incubator-containers
+      - icon: twitter
+        text: twitter
+        href: https://x.com/MPIDRnews
+    contents:
+      - index.qmd
+      - 1-reproducible-github-repo-in-binder.qmd
+
+page-navigation: true
+page-footer: 
+  border: false
+  left: "Copyright 2024, Egor Kotov" 
+  right: 
+    - icon: github
+      href: https://github.com/e-kotov/2024-mpidr-summer-incubator-containers
+
+
+format:
+  html:
+    theme:
+      light: zephyr
+      dark: slate
+    css: styles.css
+    toc: true
+
+bibliography: references.bib
+bibliographystyle: mla
+
+editor: source
+
+editor_options:
+  markdown:
+    wrap: 72
+    canonical: true

@@ -1,0 +1,16 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Containers for computational reproducibility - 2024 MPIDR Summer Incubator",
+    "section": "",
+    "text": "This is a Quarto website for the MPIDR Summer Incubator 2024 tutorial on using containers for reproducible research."
+  }
+]
