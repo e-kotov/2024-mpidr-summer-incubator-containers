@@ -1,35 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Workshop Introduction",
-    "section": "",
-    "text": "This website provides supporting materials for the workshop Containers for Computational Reproducibility which is part of the Population and Social Data Science Summer Incubator Program 2024 organized by the Max Planck Institute for Demographic Research in Rostock, Germany.\nTo participate in the workshop, we recommend that you have a GitHub account and a Docker Hub account. You may also want to install Docker on your computer (for Windows, macOS or Linux). For macOS we also highly recommend the free version of OrbStack as a complete and lightweight Docker Desktop replacement.",
-    "crumbs": [
-      "Workshop Introduction"
-    ]
-  },
-  {
-    "objectID": "index.html#expected-learning-outcomes",
-    "href": "index.html#expected-learning-outcomes",
-    "title": "Workshop Introduction",
-    "section": "Expected learning outcomes",
-    "text": "Expected learning outcomes\n\nAble to explain the concept of containers and their role in computational reproducibility\nAble to create a Docker container with RStudio and R of a specific version and with specific archived R packages\nAble to run create a GitHub repository that can be executed in the cloud using Binder",
-    "crumbs": [
-      "Workshop Introduction"
-    ]
-  },
-  {
-    "objectID": "index.html#what-to-do-in-the-workshop",
-    "href": "index.html#what-to-do-in-the-workshop",
-    "title": "Workshop Introduction",
-    "section": "What to do in the workshop",
-    "text": "What to do in the workshop\nThe tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands.\n\n\n\nYour skills\nTutorial to follow\n\n\nYou have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub\n1. Create a reproducible GitHub repository that runs in the cloud using Binder\n\n\nYou are familiar with basic command line (terminal) commands such as git clone, cd, mkdir or not afraid to try them out.\n2. Build your own Docker container image and run it (locally or in the cloud)",
-    "crumbs": [
-      "Workshop Introduction"
-    ]
-  },
-  {
     "objectID": "1-reproducible-github-repo-in-binder.html",
     "href": "1-reproducible-github-repo-in-binder.html",
     "title": "1. Reproducible GitHub Repository in Binder",
@@ -93,6 +63,36 @@
     "crumbs": [
       "Tutorials",
       "1. Reproducible GitHub Repository in Binder"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Workshop Introduction",
+    "section": "",
+    "text": "This website provides supporting materials for the workshop Containers for Computational Reproducibility which is part of the Population and Social Data Science Summer Incubator Program 2024 organized by the Max Planck Institute for Demographic Research in Rostock, Germany.\nTo participate in the workshop, we recommend that you have a GitHub account and a Docker Hub account. You may also want to install Docker on your computer (for Windows, macOS or Linux). For macOS we also highly recommend the free version of OrbStack as a complete and lightweight Docker Desktop replacement.",
+    "crumbs": [
+      "Workshop Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#expected-learning-outcomes",
+    "href": "index.html#expected-learning-outcomes",
+    "title": "Workshop Introduction",
+    "section": "Expected learning outcomes",
+    "text": "Expected learning outcomes\n\nAble to explain the concept of containers and their role in computational reproducibility\nAble to create a Docker container with RStudio and R of a specific version and with specific archived R packages\nAble to run create a GitHub repository that can be executed in the cloud using Binder",
+    "crumbs": [
+      "Workshop Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#what-to-do-in-the-workshop",
+    "href": "index.html#what-to-do-in-the-workshop",
+    "title": "Workshop Introduction",
+    "section": "What to do in the workshop",
+    "text": "What to do in the workshop\nThe tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands.\n\n\n\nYour skills\nTutorial to follow\n\n\nYou have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub\n1. Create a reproducible GitHub repository that runs in the cloud using Binder\n\n\nYou are familiar with basic command line (terminal) commands such as git clone, cd, mkdir or not afraid to try them out.\n2. Build your own Docker container image and run it (locally or in the cloud)",
+    "crumbs": [
+      "Workshop Introduction"
     ]
   },
   {
