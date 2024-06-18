@@ -77,10 +77,10 @@ To install from CRAN:
 install.packages("ggplot2")
 ```
 
-To installs a certain package version from CRAN, can also install versions of packages that were archived on CRAN:
+To installs a certain package version from CRAN, can also install versions of packages that were archived on CRAN (by default, installs the latest available version, even if the package is archived):
 
 ```r
-remotes:install_version("MortalitySmooth") # 
+remotes:install_version("MortalitySmooth")
 ```
 
 To install any package from GitHub:
@@ -111,7 +111,7 @@ Another great feature of GitHub is that you can edit all files in the repository
 
 Now edit the `Dockerfile` and `install.R` files in your repository to include the archived R packages that you found. You can also change the `install.R` file to install any other R packages that you need for your project.
 
-Feel free to remove the `main.Rmd` file in the repository and add your own `.Rmd` or `.R` file with some test code that loads the packages you installed and runs a short (at least one line) analysis.
+Feel free to remove the `main.Rmd` file in the repository and add your own `.Rmd` or `.R` file with some test code that loads the packages you installed and runs a short (at least one line) analysis. One good idea is to use the code from the package vignette or from the package documentation.
 
 Make sure you edit the code of the `README.md` in your forked repo, so that the button  ![Binder](https://mybinder.org/badge_logo.svg) actually launches your repository, and not the original one. Instructions on how to do that are in the `README.md` file itself.
 
