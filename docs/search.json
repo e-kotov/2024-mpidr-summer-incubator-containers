@@ -24,7 +24,7 @@
     "href": "index.html#what-to-do-in-the-workshop",
     "title": "Workshop Introduction",
     "section": "What to do in the workshop",
-    "text": "What to do in the workshop\nThe tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands.\n\n\n\nYour skills\nTutorial to follow\n\n\nYou have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub\n1. Create a reproducible GitHub repository that runs in the cloud using Binder\n\n\nYou are familiar with basic command line (terminal) commands such as git clone, cd, mkdir or not afraid to try them out.\n2. Build your own Docker container image and run it.",
+    "text": "What to do in the workshop\nThe tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands.\n\n\n\nYour skills\nTutorial to follow\n\n\nYou have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub\n1. Create a reproducible GitHub repository that runs in the cloud using Binder\n\n\nYou are familiar with basic command line (terminal) commands such as git clone, cd, mkdir or not afraid to try them out.\n2. Build your own Docker container image and run it (locally or in the cloud)",
     "crumbs": [
       "Workshop Introduction"
     ]
