@@ -58,3 +58,5 @@ editor_options:
     wrap: 72
     canonical: true
 
+execute:
+  freeze: auto
