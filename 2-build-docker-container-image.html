@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -154,7 +188,16 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="4">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-goal" id="toc-the-goal" class="nav-link active" data-scroll-target="#the-goal">The Goal</a></li>
+  <li><a href="#start-the-play-with-docker-environment" id="toc-start-the-play-with-docker-environment" class="nav-link" data-scroll-target="#start-the-play-with-docker-environment">Start the Play with Docker Environment</a></li>
+  <li><a href="#clone-the-repository" id="toc-clone-the-repository" class="nav-link" data-scroll-target="#clone-the-repository">Clone the Repository</a></li>
+  <li><a href="#edit-the-dockerfile-and-install.r" id="toc-edit-the-dockerfile-and-install.r" class="nav-link" data-scroll-target="#edit-the-dockerfile-and-install.r">Edit the <code>Dockerfile</code> and <code>install.R</code></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -178,8 +221,69 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>First, make sure you got <a href="./0-how-docker-and-binder-work.html">familiar with how Docker containers work</a>.</p>
+<p>This task can be done on your own computer or on a cloud-based <a href="https://www.docker.com/play-with-docker/" target="_blank">Play with Docker</a> environment. Specifically, for this tutorial we will use the <a href="https://labs.play-with-docker.com/" target="_blank">Play with Docker Labs Environment</a>, however you are free to follow along on your own computer, if you have <a href="https://docs.docker.com/get-docker/" target="_blank">Docker</a>, <a href="https://orbstack.dev/download" target="_blank">OrbStack</a>, or other Docker-compatible software installed. Using the Play with Docker Labs Environment is free and does not require any installation, only a web browser and a Docker Hub account.</p>
+<section id="the-goal" class="level3">
+<h3 class="anchored" data-anchor-id="the-goal">The Goal</h3>
+<p>Build your own Docker container image for your hypothetical project. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.</p>
+<p>To achieve this goal, find a few archived R packages on <a href="https://cran.r-project.org/" target="_blank">CRAN</a>. A few notable examples are <a href="https://cran.r-project.org/package=rgdal" target="_blank"><code>rgdal</code></a>, <a href="https://cran.r-project.org/package=MortalitySmooth" target="_blank"><code>MortalitySmooth</code></a> and many others. Remember, “40% of all packages ever in CRAN got at one point archived”[^1]. CRAN does not have it’s own section with archived packages, so you might want to look at <a href="https://www.cranhaven.org/dashboard-live.html" target="_blank">CRANhaven Dashboard</a> is also a great place to start, over there you can find recently archived packages. Remember, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using <code>remotes::install_version()</code> function from the <code>remotes</code> package instead of <code>install.packages()</code>, but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.</p>
+</section>
+<section id="start-the-play-with-docker-environment" class="level3">
+<h3 class="anchored" data-anchor-id="start-the-play-with-docker-environment">Start the Play with Docker Environment</h3>
+<p>Go to <a href="https://labs.play-with-docker.com/" target="_blank">https://labs.play-with-docker.com/</a> and log in with your Docker Hub account.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/images/labs-play-with-docker-login.png" class="quarto-figure quarto-figure-left figure-img" height="200"></p>
+</figure>
+</div>
+<p>If it is the first time you are logging in, Play With Docker will request access to your Docker account. Click on the “Accept” button to proceed. Than click the large green “Start” button to start the environment.</p>
+<p>Click on the “Add New Instance” button to start a new Docker container instance.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/images/pwd-add-instance.png" class="quarto-figure quarto-figure-left figure-img" height="200"></p>
+</figure>
+</div>
+<p>You should get a new terminal window with a prompt that looks like this:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/images/pwd-instance-started.png" class="quarto-figure quarto-figure-left figure-img" height="400"></p>
+</figure>
+</div>
+</section>
+<section id="clone-the-repository" class="level3">
+<h3 class="anchored" data-anchor-id="clone-the-repository">Clone the Repository</h3>
+<p>Go to the <a href="https://github.com/Population-Dynamics-Lab/grid-sample-containerized" target="_blank">minimal example repository</a> and copy the URL as shown below:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/images/github-copy-clone-url.png" class="quarto-figure quarto-figure-left figure-img" height="200"></p>
+</figure>
+</div>
+<p>Now clone the repository by pasting the following command into the terminal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/Population-Dynamics-Lab/grid-sample-containerized.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check which folders you have in the current directory:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should see the <code>grid-sample-containerized</code> folder. Change the directory to the repository (you can type <code>cd g</code> and press <code>Tab</code> to autocomplete the folder name):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> grid-sample-containerized</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can check the contents of the repository by listing the files in the directory using <code>ls</code> terminal command again.</p>
+<p>Now find the editor button in the middle of the screen and click on it.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/images/pwd-find-editor.png" class="quarto-figure quarto-figure-left figure-img" height="400"></p>
+</figure>
+</div>
+<p>A very simple file browser and editor (displayed when you click a file) will appear. You can edit the files in the repository directly in the browser. Remember to save changes.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/images/pwd-editor.png" class="quarto-figure quarto-figure-left figure-img" height="400"></p>
+</figure>
+</div>
+</section>
+<section id="edit-the-dockerfile-and-install.r" class="level3">
+<h3 class="anchored" data-anchor-id="edit-the-dockerfile-and-install.r">Edit the <code>Dockerfile</code> and <code>install.R</code></h3>
+<p>Now edit the <code>Dockerfile</code> and <code>install.R</code> files in your repository to include the archived R packages that you found. You can also change the <code>install.R</code> file to install any other R packages that you need for your project. You can remove or keep all other files in the repository as they are.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

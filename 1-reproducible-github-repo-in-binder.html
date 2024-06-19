@@ -194,14 +194,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>First, make sure you got <a href="./0-how-docker-and-binder-work.html">familiar with how Docker containers work</a>.</p>
 <section id="the-goal" class="level3">
 <h3 class="anchored" data-anchor-id="the-goal">The Goal</h3>
 <p>Create your own repository for a hypothetical research project. Make it future proof with a Docker container that can be run in the cloud using Binder. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.</p>
-<p>To achieve this goal, find a few archived R packages on <a href="https://cran.r-project.org/" target="_blank">CRAN</a>. A few notable examples are <a href="https://cran.r-project.org/package=rgdal" target="_blank"><code>rgdal</code></a>, <a href="https://cran.r-project.org/package=MortalitySmooth" target="_blank"><code>MortalitySmooth</code></a> and many others. Remember, “40% of all packages ever in CRAN got at one point archived”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. CRAN does not have it’s own section with archived packages, so you might want to look at <a href="https://www.cranhaven.org/dashboard-live.html" target="_blank">CRANhaven Dashboard</a> is also a great place to start, over there you can find recently archived packages. Remmber, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using <code>remotes::install_version()</code> function from the <code>remotes</code> package instead of <code>install.packages()</code>, but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.</p>
+<p>To achieve this goal, find a few archived R packages on <a href="https://cran.r-project.org/" target="_blank">CRAN</a>. A few notable examples are <a href="https://cran.r-project.org/package=rgdal" target="_blank"><code>rgdal</code></a>, <a href="https://cran.r-project.org/package=MortalitySmooth" target="_blank"><code>MortalitySmooth</code></a> and many others. Remember, “40% of all packages ever in CRAN got at one point archived”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. CRAN does not have it’s own section with archived packages, so you might want to look at <a href="https://www.cranhaven.org/dashboard-live.html" target="_blank">CRANhaven Dashboard</a> is also a great place to start, over there you can find recently archived packages. Remember, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using <code>remotes::install_version()</code> function from the <code>remotes</code> package instead of <code>install.packages()</code>, but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.</p>
 </section>
 <section id="fork-the-repository" class="level3">
 <h3 class="anchored" data-anchor-id="fork-the-repository">Fork the repository</h3>
-<p>Fork (copy) <a href="https://github.com/Population-Dynamics-Lab/grid-sample-containerized" target="_blank">this repository</a> to your GitHub account. To do that, click on the “Fork” button in the top right corner of the repository page.</p>
+<p>Fork (copy) the <a href="https://github.com/Population-Dynamics-Lab/grid-sample-containerized" target="_blank">minimal example repository</a> to your GitHub account. To do that, click on the “Fork” button in the top right corner of the repository page.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="media/images/fork-repo.png" class="img-fluid figure-img"></p>
@@ -216,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Once you have forked the repository, you can clone it to your local machine for editing. You can also edit the files directly on GitHub by clicking on the file you want to edit and then clicking on the pencil icon.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="media/images/edit-on-github.png" class="img-fluid figure-img"></p>
+<p><img src="media/images/edit-on-github.png" height="200" class="figure-img"></p>
 <figcaption>How to edit a file on GitHub</figcaption>
 </figure>
 </div>
@@ -255,11 +256,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="share-your-work" class="level3">
 <h3 class="anchored" data-anchor-id="share-your-work">Share your work</h3>
-<p>Paste the link to your repository in a new <a href="https://github.com/e-kotov/2024-mpidr-summer-incubator-containers/issues" target="_blank">Issue</a> in the repository of this tutorial, so that others can see your work and try to run your container in Binder.</p>
+<p>Paste the link to your repository in a new <a href="https://github.com/e-kotov/2024-mpidr-summer-incubator-containers/issues" target="_blank">issue</a> in the repository of this tutorial, so that others can see your work and try to run your container in Binder.</p>
 </section>
 <section id="discussion" class="level3">
 <h3 class="anchored" data-anchor-id="discussion">Discussion</h3>
-<p>Now that you have done your own reproducible repository, think for a moment, how future proof is that? What does the reproducibility of your repository depend on? How can you further future-proof it?</p>
+<p>Now that you have created your own reproducible repository, think for a moment, how future proof is it really? What does the reproducibility of your repository depend on? How can you further future-proof it?</p>
 
 
 </section>
