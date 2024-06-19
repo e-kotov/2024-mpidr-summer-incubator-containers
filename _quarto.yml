@@ -36,6 +36,8 @@ page-footer:
 
 format:
   html:
+    include-in-header:
+        file: analytics.html
     theme:
       light: zephyr
       dark: slate
