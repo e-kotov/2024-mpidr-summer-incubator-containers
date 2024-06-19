@@ -193,9 +193,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#the-goal" id="toc-the-goal" class="nav-link active" data-scroll-target="#the-goal">The Goal</a></li>
+  <li><a href="#choose-the-rocker-image-version" id="toc-choose-the-rocker-image-version" class="nav-link" data-scroll-target="#choose-the-rocker-image-version">Choose the Rocker Image version</a></li>
   <li><a href="#start-the-play-with-docker-environment" id="toc-start-the-play-with-docker-environment" class="nav-link" data-scroll-target="#start-the-play-with-docker-environment">Start the Play with Docker Environment</a></li>
   <li><a href="#clone-the-repository" id="toc-clone-the-repository" class="nav-link" data-scroll-target="#clone-the-repository">Clone the Repository</a></li>
-  <li><a href="#edit-the-dockerfile-and-install.r" id="toc-edit-the-dockerfile-and-install.r" class="nav-link" data-scroll-target="#edit-the-dockerfile-and-install.r">Edit the <code>Dockerfile</code> and <code>install.R</code></a></li>
+  <li><a href="#edit-the-dockerfile" id="toc-edit-the-dockerfile" class="nav-link" data-scroll-target="#edit-the-dockerfile">Edit the <code>Dockerfile</code></a></li>
+  <li><a href="#build-the-docker-container-image" id="toc-build-the-docker-container-image" class="nav-link" data-scroll-target="#build-the-docker-container-image">Build the Docker Container Image</a></li>
+  <li><a href="#run-the-docker-container-from-your-image" id="toc-run-the-docker-container-from-your-image" class="nav-link" data-scroll-target="#run-the-docker-container-from-your-image">Run the Docker Container from your Image</a></li>
+  <li><a href="#stop-the-container" id="toc-stop-the-container" class="nav-link" data-scroll-target="#stop-the-container">Stop the container</a></li>
+  <li><a href="#video-reference" id="toc-video-reference" class="nav-link" data-scroll-target="#video-reference">Video reference</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
 </nav>
     </div>
@@ -225,8 +231,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This task can be done on your own computer or on a cloud-based <a href="https://www.docker.com/play-with-docker/" target="_blank">Play with Docker</a> environment. Specifically, for this tutorial we will use the <a href="https://labs.play-with-docker.com/" target="_blank">Play with Docker Labs Environment</a>, however you are free to follow along on your own computer, if you have <a href="https://docs.docker.com/get-docker/" target="_blank">Docker</a>, <a href="https://orbstack.dev/download" target="_blank">OrbStack</a>, or other Docker-compatible software installed. Using the Play with Docker Labs Environment is free and does not require any installation, only a web browser and a Docker Hub account.</p>
 <section id="the-goal" class="level3">
 <h3 class="anchored" data-anchor-id="the-goal">The Goal</h3>
-<p>Build your own Docker container image for your hypothetical project. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.</p>
-<p>To achieve this goal, find a few archived R packages on <a href="https://cran.r-project.org/" target="_blank">CRAN</a>. A few notable examples are <a href="https://cran.r-project.org/package=rgdal" target="_blank"><code>rgdal</code></a>, <a href="https://cran.r-project.org/package=MortalitySmooth" target="_blank"><code>MortalitySmooth</code></a> and many others. Remember, “40% of all packages ever in CRAN got at one point archived”[^1]. CRAN does not have it’s own section with archived packages, so you might want to look at <a href="https://www.cranhaven.org/dashboard-live.html" target="_blank">CRANhaven Dashboard</a> is also a great place to start, over there you can find recently archived packages. Remember, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using <code>remotes::install_version()</code> function from the <code>remotes</code> package instead of <code>install.packages()</code>, but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.</p>
+<p>Build your own Docker container image for your hypothetical project. Imagine, that for this project you need 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.</p>
+<p>To achieve this goal, find a few archived R packages on <a href="https://cran.r-project.org/" target="_blank">CRAN</a>. A few notable examples are <a href="https://cran.r-project.org/package=rgdal" target="_blank"><code>rgdal</code></a>, <a href="https://cran.r-project.org/package=MortalitySmooth" target="_blank"><code>MortalitySmooth</code></a> and many others. Remember, “40% of all packages ever in CRAN got at one point archived”[^1]. CRAN does not have it’s own section with archived packages, so you might want to look at <a href="https://www.cranhaven.org/dashboard-live.html" target="_blank">CRANhaven Dashboard</a> is also a great place to start, over there you can find recently archived packages.</p>
+</section>
+<section id="choose-the-rocker-image-version" class="level3">
+<h3 class="anchored" data-anchor-id="choose-the-rocker-image-version">Choose the Rocker Image version</h3>
+<p>Depending on which archived package you selected, you must first find out which <a href="https://rocker-project.org/" target="_blank">Rocker image</a> version to use. For example, if you selected <code>MortalitySmooth</code> package archived on 2020-12-10. Use internet search to find the release dates of R versions released just before this date. Rocker images are configured to use CRAN snapshot on the date of the R version release. That is, if you would use Rocker RStudio container image with R v4.1.0 released on 18th May 2021, the R package installer in the container will think it is 18th May 2021 and will try to install the package from the CRAN snapshot from that date. If the package was archived after that date, you will not be able to install it using the standard <code>install.packages()</code> function. You will have to use <code>remotes::install_version()</code> function from the <code>remotes</code> package. So your options are:</p>
+<ul>
+<li><p>Use more recent R version (and consequently Rocker image) and try to installing <code>MoralitySmooth</code> using <code>remotes::install_version()</code> function.</p></li>
+<li><p>Use strictly the R version that was released just before the package was archived and try to install the package using <code>install.packages()</code> function.</p></li>
+</ul>
 </section>
 <section id="start-the-play-with-docker-environment" class="level3">
 <h3 class="anchored" data-anchor-id="start-the-play-with-docker-environment">Start the Play with Docker Environment</h3>
@@ -264,8 +278,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You should see the <code>grid-sample-containerized</code> folder. Change the directory to the repository (you can type <code>cd g</code> and press <code>Tab</code> to autocomplete the folder name):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> grid-sample-containerized</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can check the contents of the repository by listing the files in the directory using <code>ls</code> terminal command again.</p>
-<p>Now find the editor button in the middle of the screen and click on it.</p>
+<p>You can check the contents of the repository by listing the files in the directory using in terminal again:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="edit-the-dockerfile" class="level3">
+<h3 class="anchored" data-anchor-id="edit-the-dockerfile">Edit the <code>Dockerfile</code></h3>
+<p>Now that you have selected the Rocker image version, you can edit the <code>Dockerfile</code> in the repository. The <code>Dockerfile</code> is a text file that contains instructions for building a Docker container image. Unlike in <a href="./1-reproducible-github-repo-in-binder.html">tutorial 1</a>, In this tutorial, ignore the <code>install.R</code> file, we will be installing packages right in the <code>Dockerfile</code>.</p>
+<p>Find the editor button in the middle of the screen and click on it.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="media/images/pwd-find-editor.png" class="quarto-figure quarto-figure-left figure-img" height="400"></p>
@@ -277,10 +296,123 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="media/images/pwd-editor.png" class="quarto-figure quarto-figure-left figure-img" height="400"></p>
 </figure>
 </div>
+<p>To install the <code>MortalitySmooth</code> package in the <code>Dockerfile</code> add this in the second line:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> <span class="at">--skipinstalled</span> MortalitySmooth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>So your final <code>Dockerfile</code> should look like this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/rstudio:4.0.1</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> <span class="at">--skipinstalled</span> MortalitySmooth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you were installing two packages, you would add them like this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/rstudio:4.0.1</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> <span class="at">--skipinstalled</span> MortalitySmooth ggplot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Remember to save the changes.</p>
 </section>
-<section id="edit-the-dockerfile-and-install.r" class="level3">
-<h3 class="anchored" data-anchor-id="edit-the-dockerfile-and-install.r">Edit the <code>Dockerfile</code> and <code>install.R</code></h3>
-<p>Now edit the <code>Dockerfile</code> and <code>install.R</code> files in your repository to include the archived R packages that you found. You can also change the <code>install.R</code> file to install any other R packages that you need for your project. You can remove or keep all other files in the repository as they are.</p>
+<section id="build-the-docker-container-image" class="level3">
+<h3 class="anchored" data-anchor-id="build-the-docker-container-image">Build the Docker Container Image</h3>
+<p>Unlike in <a href="./1-reproducible-github-repo-in-binder.html">tutorial 1</a>, you will not be using Binder web service to build the Docker container image automatically for you. Instead, you will use the <code>docker</code> command. The <code>docker</code> command is a command-line tool that allows you to interact with Docker containers and images. You can use the <code>docker</code> command to build a Docker image from the <code>Dockerfile</code> in the repository.</p>
+<p>First make sure you are in a folder that has the <code>Dockerfile</code> in it. You can check the contents of the current directory by running:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-al</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And you can quickly check what is in the <code>Dockerfile</code> by running:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> Dockerfile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To build the Docker image, run the following command in the terminal:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> r-mort-smooth:4.0.1 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let us break down this command:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>part of command</th>
+<th>what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>docker build</code></td>
+<td>This is the base command used to build a Docker image from a Dockerfile.</td>
+</tr>
+<tr class="even">
+<td><code>-t r-mort-smooth:4.0.1</code></td>
+<td>The <code>-t</code> flag stands for “tag”. <code>r-mort-smooth:4.0.1</code> is the name and tag given to the image. <code>r-mort-smooth</code> is the name of the image. <code>4.0.1</code> is the tag, which often represents the version of the image. You can choose any name and version here can also be anything, but we use the same version we used in the <code>Dockerfile</code> just so that we know which R version is going to be inside the container.</td>
+</tr>
+<tr class="odd">
+<td><code>.</code></td>
+<td>this very important <code>.</code> (dot) specifies the build context, which is the current directory. Docker will look for a <code>Dockerfile</code> in this directory to create the image.</td>
+</tr>
+</tbody>
+</table>
+<p>The container image will take about 3-6 minutes to build.</p>
+<p>When the build is finished, you can check that it was added to the local container image storage:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="run-the-docker-container-from-your-image" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-docker-container-from-your-image">Run the Docker Container from your Image</h3>
+<p>Now you have a Docker container image with the <code>MortalitySmooth</code> package installed. To run it, you can use the <code>docker run</code> command in the following way:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-p</span> 8787:8787 <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/rstudio/my-project <span class="at">-e</span> PASSWORD=somepass r-mort-smooth:4.0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let us break down this command:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>part of command</th>
+<th>what it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>docker run</code></td>
+<td>This is the base command used to run a Docker container from local or remote container image storage.</td>
+</tr>
+<tr class="even">
+<td><code>--rm</code></td>
+<td>This makes the container temporary. It will be destroyed after you stop it. You can explore other options (e.g.&nbsp;how to name containers, make them persistent and re-run the same ones after stopping) in the <a href="https://docs.docker.com/engine/reference/run/">Docker documentation</a>. But for now we want a disposable container that is destroyed after stopping.</td>
+</tr>
+<tr class="odd">
+<td><code>-p 8787:8787</code></td>
+<td>This flag specifies that the port inside the container is mapped to your computer, so that you can access RStudio in a web browser. Briefly, RStudio in a container is actually a server software that works over a network and it is not exactly the same as RStudio on your laptop, even though it feels that way. This is why ports are necessary, but do not worry about it too much at the moment.</td>
+</tr>
+<tr class="even">
+<td><code>-v $(pwd):/home/rstudio/my-project</code></td>
+<td>This maps the current directory (designated by <code>$(pwd)</code>) from which you are running the command to a folder inside the container (<code>/home/rstudio/my-project</code>). Thanks to this, when you use the containerized RStudio, you will have access to your local folder and will be able to run scripts and edit them. The <code>/home/rstudio/</code> is default for Rocker containers, and the <code>my-project</code> part can be replaced with anything. Instead of the current directory (designated by <code>$(pwd)</code>) you can provide <code>/path/to/any/folder/on/your/computer</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>-e PASSWORD=somepass</code></td>
+<td>Sets the password. Better use a good password, even though you are running locally.</td>
+</tr>
+<tr class="even">
+<td><code>r-mort-smooth:4.0.1</code></td>
+<td>The final part is the name and tag that you assigned earlier when you were creating the container image.</td>
+</tr>
+</tbody>
+</table>
+<p>The container starts almost instantly. In case with Play with Docker service, you will see a button with a port pop-up:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/images/pwd-port.png" class="quarto-figure quarto-figure-left figure-img" height="400"></p>
+</figure>
+</div>
+<p>Click on the port number to open RStudio in a new tab. Use the default login <code>rstudio</code> and the password you set in the <code>docker run</code> command.</p>
+<p>You can now use RStudio in the browser to check if the <code>MortalitySmooth</code> package is installed by running:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MortalitySmooth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="stop-the-container" class="level3">
+<h3 class="anchored" data-anchor-id="stop-the-container">Stop the container</h3>
+<p>To stop the container, click the “power” button in the top right corner of the RStudio window. Close the web browser tab with RStudio. In the Play with Docker browser tab, click in the terminal and press <code>Ctrl+C</code> or <code>Ctrl+\</code> to stop the container.</p>
+</section>
+<section id="video-reference" class="level3">
+<h3 class="anchored" data-anchor-id="video-reference">Video reference</h3>
+<p>For reference, here is the whole process in a sped up sequence:</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="media/videos/play-with-docker.gif" class="quarto-figure quarto-figure-left figure-img" height="400"></p>
+</figure>
+</div>
+<p>And her is a video in a more leisurely pace, where only the building of the <code>Dockerfile</code> is sped up, but you can watch and rewind to any steps:</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/lXCoNhYNb90" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="discussion" class="level3">
+<h3 class="anchored" data-anchor-id="discussion">Discussion</h3>
+<p>Now that you have created your own reproducible repository, think for a moment, how future proof is it really? What does the reproducibility of your repository depend on? How can you further future-proof it?</p>
 
 
 </section>

@@ -8,9 +8,20 @@ First, make sure you got [familiar with how Docker containers work](0-how-docker
 
 ### The Goal
 
-Create your own repository for a hypothetical research project. Make it future proof with a Docker container that can be run in the cloud using Binder. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.
+Create your own repository for a hypothetical research project. Make it future proof with a Docker container that can be run in the cloud using Binder. Imagine, that for this project you need 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.
 
-To achieve this goal, find a few archived R packages on [CRAN](https://cran.r-project.org/){target="_blank"}. A few notable examples are [`rgdal`](https://cran.r-project.org/package=rgdal){target="_blank"}, [`MortalitySmooth`](https://cran.r-project.org/package=MortalitySmooth){target="_blank"} and many others. Remember,  "40% of all packages ever in CRAN got at one point archived"[^1]. CRAN does not have it's own section with archived packages, so you might want to look at [CRANhaven Dashboard](https://www.cranhaven.org/dashboard-live.html){target="_blank"} is also a great place to start, over there you can find recently archived packages. Remember, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using `remotes::install_version()` function from the `remotes` package instead of `install.packages()`, but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.
+To achieve this goal, find a few archived R packages on [CRAN](https://cran.r-project.org/){target="_blank"}. A few notable examples are [`rgdal`](https://cran.r-project.org/package=rgdal){target="_blank"}, [`MortalitySmooth`](https://cran.r-project.org/package=MortalitySmooth){target="_blank"} and many others. Remember,  "40% of all packages ever in CRAN got at one point archived"[^1]. CRAN does not have it's own section with archived packages, so you might want to look at [CRANhaven Dashboard](https://www.cranhaven.org/dashboard-live.html){target="_blank"} is also a great place to start, over there you can find recently archived packages.
+
+
+### Choose the Rocker Image version
+
+Depending on which archived package you selected, you must first find out which [Rocker image](https://rocker-project.org/){target="_blank"} version to use. For example, if you selected `MortalitySmooth` package archived on 2020-12-10. Use internet search to find the release dates of R versions released just before this date. Rocker images are configured to use CRAN snapshot on the date of the R version release. That is, if you would use Rocker RStudio container image with R v4.1.0 released on 18th May 2021, the R package installer in the container will think it is 18th May 2021 and will try to install the package from the CRAN snapshot from that date. If the package was archived after that date, you will not be able to install it using the standard `install.packages()` function. You will have to use `remotes::install_version()` function from the `remotes` package.
+So your options are:
+
+-   Use more recent R version (and consequently Rocker image) and try to installing `MoralitySmooth` using `remotes::install_version()` function.
+
+-   Use strictly the R version that was released just before the package was archived and try to install the package using `install.packages()` function.
+
 
 ### Fork the repository
 
