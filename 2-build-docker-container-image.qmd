@@ -3,3 +3,74 @@ title: "2. Build a Docker container image"
 from: markdown+emoji
 code-annotations: hover
 ---
+
+First, make sure you got [familiar with how Docker containers work](0-how-docker-and-binder-work.qmd).
+
+This task can be done on your own computer or on a cloud-based [Play with Docker](https://www.docker.com/play-with-docker/){target=_blank} environment. Specifically, for this tutorial we will use the [Play with Docker Labs Environment](https://labs.play-with-docker.com/){target=_blank}, however you are free to follow along on your own computer, if you have [Docker](https://docs.docker.com/get-docker/){target="_blank"}, [OrbStack](https://orbstack.dev/download){target="_blank"}, or other Docker-compatible software installed. Using the Play with Docker Labs Environment is free and does not require any installation, only a web browser and a Docker Hub account.
+
+### The Goal
+
+Build your own Docker container image for your hypothetical project. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.
+
+To achieve this goal, find a few archived R packages on [CRAN](https://cran.r-project.org/){target="_blank"}. A few notable examples are [`rgdal`](https://cran.r-project.org/package=rgdal){target="_blank"}, [`MortalitySmooth`](https://cran.r-project.org/package=MortalitySmooth){target="_blank"} and many others. Remember,  "40% of all packages ever in CRAN got at one point archived"[^1]. CRAN does not have it's own section with archived packages, so you might want to look at [CRANhaven Dashboard](https://www.cranhaven.org/dashboard-live.html){target="_blank"} is also a great place to start, over there you can find recently archived packages. Remember, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using `remotes::install_version()` function from the `remotes` package instead of `install.packages()`, but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.
+
+
+### Start the Play with Docker Environment
+
+Go to [https://labs.play-with-docker.com/](https://labs.play-with-docker.com/){target="_blank"} and log in with your Docker Hub account.
+
+
+![](media/images/labs-play-with-docker-login.png){fig-align="left" height=200px}
+
+If it is the first time you are logging in, Play With Docker will request access to your Docker account. Click on the "Accept" button to proceed. Than click the large green "Start" button to start the environment.
+
+Click on the "Add New Instance" button to start a new Docker container instance.
+
+![](media/images/pwd-add-instance.png){fig-align="left" height=200px}
+
+You should get a new terminal window with a prompt that looks like this:
+
+![](media/images/pwd-instance-started.png){fig-align="left" height=400px}
+
+### Clone the Repository
+
+Go to the [minimal example repository](https://github.com/Population-Dynamics-Lab/grid-sample-containerized){target="_blank"} and copy the URL as shown below:
+
+![](media/images/github-copy-clone-url.png){fig-align="left" height=200px}
+
+Now clone the repository by pasting the following command into the terminal:
+
+```bash
+git clone https://github.com/Population-Dynamics-Lab/grid-sample-containerized.git
+```
+
+Check which folders you have in the current directory:
+
+```bash
+ls
+```
+
+You should see the `grid-sample-containerized` folder. Change the directory to the repository (you can type `cd g` and press `Tab` to autocomplete the folder name):
+
+```bash
+cd grid-sample-containerized
+```
+
+You can check the contents of the repository by listing the files in the directory using `ls` terminal command again.
+
+Now find the editor button in the middle of the screen and click on it.
+
+![](media/images/pwd-find-editor.png){fig-align="left" height=400px}
+
+A very simple file browser and editor (displayed when you click a file) will appear. You can edit the files in the repository directly in the browser. Remember to save changes.
+
+![](media/images/pwd-editor.png){fig-align="left" height=400px}
+
+### Edit the `Dockerfile` and `install.R`
+
+Now edit the `Dockerfile` and `install.R` files in your repository to include the archived R packages that you found. You can also change the `install.R` file to install any other R packages that you need for your project. You can remove or keep all other files in the repository as they are.
+
+
+
+
+

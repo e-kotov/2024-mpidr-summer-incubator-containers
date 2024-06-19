@@ -39,21 +39,20 @@ To participate in the workshop, we recommend that you have a [GitHub](https://gi
 You may also want to install [Docker](https://docs.docker.com/get-docker/){target="_blank"} on your computer (for Windows, macOS or Linux).
 For macOS we also highly recommend the free version of [OrbStack](https://orbstack.dev/download){target="_blank"} as a complete and lightweight Docker Desktop replacement.
 
-
 ## Expected learning outcomes
 
--   Able to explain the concept of containers and their role in computational reproducibility
-
--   Able to create a Docker container with RStudio and R of a specific version and with specific archived R packages
+-   Able to explain the concept of containers and their role in computational reproducibility and discuss further reproducibility challenges
 
 -   Able to run create a GitHub repository that can be executed in the cloud using [Binder](https://mybinder.org/){target="_blank"}
 
+-   Able to create a Docker container with RStudio and R of a specific version and with specific archived R packages
+
 ## What to do in the workshop
 
-The tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands.
+The tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands, as well as what you want to achieve.
 
-|                                                                                                                                                     |                                                                                                                            |
-|-------------------------|---------------------------|
-| **Your skills**                                                                                                                                     | **Tutorial to follow**                                                                                                     |
-| You have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub | [1. Make your own repository reproducible in Binder](1-reproducible-github-repo-in-binder.qmd) |
-| You are familiar with basic command line (terminal) commands such as `git clone`, `cd`, `mkdir` or not afraid to try them out.                      | [2. Build your own Docker container image and run it (locally or in the cloud)](2-build-docker-container-image.qmd)       |
+|                                                                                                                                                     |                                                                                            |                                                                                                                     |
+|--------------------------|------------------|-------------------------------------|
+| **Your current skills**                                                                                                                             | **What you will learn**                                                                    | **Tutorial to follow**                                                                                              |
+| You have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub | Make your research project results accessible to everyone, while ensuring reproducibility. | [1. Make your own repository reproducible in Binder](1-reproducible-github-repo-in-binder.qmd)                      |
+| You are familiar with basic command line (terminal) commands such as `git clone`, `cd`, `mkdir` or not afraid to try them out.                      | Create containers for your everyday work on local computer or in high-performance cluster. | [2. Build your own Docker container image and run it (locally or in the cloud)](2-build-docker-container-image.qmd) |

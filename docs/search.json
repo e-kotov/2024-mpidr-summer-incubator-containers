@@ -1,5 +1,16 @@
 [
   {
+    "objectID": "2-build-docker-container-image.html",
+    "href": "2-build-docker-container-image.html",
+    "title": "2. Build a Docker container image",
+    "section": "",
+    "text": "First, make sure you got familiar with how Docker containers work.\nThis task can be done on your own computer or on a cloud-based Play with Docker environment. Specifically, for this tutorial we will use the Play with Docker Labs Environment, however you are free to follow along on your own computer, if you have Docker, OrbStack, or other Docker-compatible software installed. Using the Play with Docker Labs Environment is free and does not require any installation, only a web browser and a Docker Hub account.\n\nThe Goal\nBuild your own Docker container image for your hypothetical project. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.\nTo achieve this goal, find a few archived R packages on CRAN. A few notable examples are rgdal, MortalitySmooth and many others. Remember, “40% of all packages ever in CRAN got at one point archived”[^1]. CRAN does not have it’s own section with archived packages, so you might want to look at CRANhaven Dashboard is also a great place to start, over there you can find recently archived packages. Remember, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using remotes::install_version() function from the remotes package instead of install.packages(), but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.\n\n\nStart the Play with Docker Environment\nGo to https://labs.play-with-docker.com/ and log in with your Docker Hub account.\n\n\n\n\n\nIf it is the first time you are logging in, Play With Docker will request access to your Docker account. Click on the “Accept” button to proceed. Than click the large green “Start” button to start the environment.\nClick on the “Add New Instance” button to start a new Docker container instance.\n\n\n\n\n\nYou should get a new terminal window with a prompt that looks like this:\n\n\n\n\n\n\n\nClone the Repository\nGo to the minimal example repository and copy the URL as shown below:\n\n\n\n\n\nNow clone the repository by pasting the following command into the terminal:\ngit clone https://github.com/Population-Dynamics-Lab/grid-sample-containerized.git\nCheck which folders you have in the current directory:\nls\nYou should see the grid-sample-containerized folder. Change the directory to the repository (you can type cd g and press Tab to autocomplete the folder name):\ncd grid-sample-containerized\nYou can check the contents of the repository by listing the files in the directory using ls terminal command again.\nNow find the editor button in the middle of the screen and click on it.\n\n\n\n\n\nA very simple file browser and editor (displayed when you click a file) will appear. You can edit the files in the repository directly in the browser. Remember to save changes.\n\n\n\n\n\n\n\nEdit the Dockerfile and install.R\nNow edit the Dockerfile and install.R files in your repository to include the archived R packages that you found. You can also change the install.R file to install any other R packages that you need for your project. You can remove or keep all other files in the repository as they are.",
+    "crumbs": [
+      "Tasks",
+      "2. Build a Docker container image"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Workshop Introduction",
@@ -14,7 +25,7 @@
     "href": "index.html#expected-learning-outcomes",
     "title": "Workshop Introduction",
     "section": "Expected learning outcomes",
-    "text": "Expected learning outcomes\n\nAble to explain the concept of containers and their role in computational reproducibility\nAble to create a Docker container with RStudio and R of a specific version and with specific archived R packages\nAble to run create a GitHub repository that can be executed in the cloud using Binder",
+    "text": "Expected learning outcomes\n\nAble to explain the concept of containers and their role in computational reproducibility and discuss further reproducibility challenges\nAble to run create a GitHub repository that can be executed in the cloud using Binder\nAble to create a Docker container with RStudio and R of a specific version and with specific archived R packages",
     "crumbs": [
       "Workshop Introduction"
     ]
@@ -24,7 +35,7 @@
     "href": "index.html#what-to-do-in-the-workshop",
     "title": "Workshop Introduction",
     "section": "What to do in the workshop",
-    "text": "What to do in the workshop\nThe tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands.\n\n\n\nYour skills\nTutorial to follow\n\n\nYou have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub\n1. Make your own repository reproducible in Binder\n\n\nYou are familiar with basic command line (terminal) commands such as git clone, cd, mkdir or not afraid to try them out.\n2. Build your own Docker container image and run it (locally or in the cloud)",
+    "text": "What to do in the workshop\nThe tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands, as well as what you want to achieve.\n\n\n\nYour current skills\nWhat you will learn\nTutorial to follow\n\n\nYou have a GitHub account, familiar with concepts of forking a repository and can edit code locally (e.g. in RStudio or VSCode) or online on GitHub\nMake your research project results accessible to everyone, while ensuring reproducibility.\n1. Make your own repository reproducible in Binder\n\n\nYou are familiar with basic command line (terminal) commands such as git clone, cd, mkdir or not afraid to try them out.\nCreate containers for your everyday work on local computer or in high-performance cluster.\n2. Build your own Docker container image and run it (locally or in the cloud)",
     "crumbs": [
       "Workshop Introduction"
     ]
@@ -34,7 +45,7 @@
     "href": "1-reproducible-github-repo-in-binder.html",
     "title": "1. Make your own repository reproducible in Binder",
     "section": "",
-    "text": "Create your own repository for a hypothetical research project. Make it future proof with a Docker container that can be run in the cloud using Binder. Imagine, that for this project you need a 1 or 2 R packages that were archived from CRAN and are not available in the Rocker container image.\nTo achieve this goal, find a few archived R packages on CRAN. A few notable examples are rgdal, MortalitySmooth and many others. Remember, “40% of all packages ever in CRAN got at one point archived”1. CRAN does not have it’s own section with archived packages, so you might want to look at CRANhaven Dashboard is also a great place to start, over there you can find recently archived packages. Remmber, that you may need to find the data of the specific R version release to identify which Rocker image version to use (to make things simpler, they actually match! R 4.0.1 is in Rocker container images with version 4.0.1). You may also have to use non-standard ways to install the packages, such as using remotes::install_version() function from the remotes package instead of install.packages(), but you may be lucky and the packages you need are still available on CRAN snapshot, matched by the data with the data of R/Rocker image version you are using.",
+    "text": "First, make sure you got familiar with how Docker containers work.",
     "crumbs": [
       "Tasks",
       "1. Make your own repository reproducible in Binder"
@@ -54,41 +65,41 @@
   {
     "objectID": "0-how-docker-and-binder-work.html",
     "href": "0-how-docker-and-binder-work.html",
-    "title": "0. Get Familiar with Docker and Binder",
+    "title": "Get Familiar with Docker and Binder",
     "section": "",
     "text": "The goal of this tutorial is to show you how to create a reproducible GitHub repository that can be run in Binder. This is a great way to share your code with others, as they can run your code in the cloud using just their web browser without having to install anything on their local machine. There are some limitations, such operating memory limit of 1-2 GB and temporary nature of such environment, but for most small to medium-sized projects and for someone to just quickly inspect your code, this should be sufficient.",
     "crumbs": [
-      "0. Get Familiar with Docker and Binder"
+      "Get Familiar with Docker and Binder"
     ]
   },
   {
     "objectID": "0-how-docker-and-binder-work.html#real-world-examples",
     "href": "0-how-docker-and-binder-work.html#real-world-examples",
-    "title": "0. Get Familiar with Docker and Binder",
+    "title": "Get Familiar with Docker and Binder",
     "section": "Real world examples",
     "text": "Real world examples\nBelow you can find real-world examples of such repositories that accompany scientific papers:\n\nhttps://github.com/Gchism94/NestArchOrg\nhttps://github.com/bbartholdy/mb11CalculusPilot\nhttps://github.com/parkgayoung/racisminarchy\n\nThere is also a minimal example (Kotov and Deneke 2024) that you can see in action below. Mind you, that the video is sped up, and in reality, it may takes a few minutes to start the container.\n\n\n\nPerforming gridsample technique in a cloud cointainer in Binder",
     "crumbs": [
-      "0. Get Familiar with Docker and Binder"
+      "Get Familiar with Docker and Binder"
     ]
   },
   {
     "objectID": "0-how-docker-and-binder-work.html#try-the-example-repository-live-demo",
     "href": "0-how-docker-and-binder-work.html#try-the-example-repository-live-demo",
-    "title": "0. Get Familiar with Docker and Binder",
+    "title": "Get Familiar with Docker and Binder",
     "section": "Try the example repository live-demo",
     "text": "Try the example repository live-demo\nGo to this example repository. Try to run the contents of the repository in a container in the cloud using Binder by clicking on the badge that looks like this: .\nWhen you do so, you will be presented with an RStudio interface in your web browser. The actual RStudio and R will be running in a container on a server provided by one of the participants of the The BinderHub Federation.\nHow does this magic happen?\n\n\n\n\n\nflowchart TB\n  A[User passes GitHub repository URL to mybinder.org]\n  A --&gt; Z[BinderHub starts a cloud server with Docker software]\n  Z --&gt; B[BinderHub downloads files from given repository to create a Docker image]\n  B --&gt; C{Docker image already in temp storage?}\n  C -- Yes --&gt; D[BinderHub pulls Docker image from temp storage]\n  C -- No --&gt; E[BinderHub Builds Docker image]\n  E --&gt; F[BinderHub pushes Docker image to temp storage]\n  F --&gt; D\n  D --&gt; G[BinderHub runs the Docker image]\n  G --&gt; H[User gets access to the running image in a web browser]",
     "crumbs": [
-      "0. Get Familiar with Docker and Binder"
+      "Get Familiar with Docker and Binder"
     ]
   },
   {
     "objectID": "0-how-docker-and-binder-work.html#explore-how-containers-work",
     "href": "0-how-docker-and-binder-work.html#explore-how-containers-work",
-    "title": "0. Get Familiar with Docker and Binder",
+    "title": "Get Familiar with Docker and Binder",
     "section": "Explore how containers work",
     "text": "Explore how containers work\nIf you look inside the example repository, you will see that it contains a Dockerfile and a few other essential files to create and run a container with RStudio. Here’s a breakdown of what each file does and how you can change them to set up your container.\n\nDockerfile\nDockerfile defines how your container is created. It is an instruction set that container building software, such as Docker, uses to create a container image. It is similar to how you can type commands in the terminal to install software on your computer, but in this case, you are installing software inside a container and the syntax of a Dockerfile is a bit different, as it prefixes each command with a keyword such as FROM, COPY, RUN, etc. You can find more details in the Docker documentation.\n\nFirst we tell the container software to use the rocker/binder:4.0.1 container image as a base. This is a container image that someone has already created and shared with the community. In this case it’s created by the Rocker Project. It already has Linux operating system, R, RStudio and many R packages installed.\n\nFROM rocker/binder:4.0.1\nIf you were building your own highly specialised container, you would probably start with a more basic container image, such as ubuntu:20.04 or debian:bullseye, and then install all the software you need from scratch. This is more work, but it gives you more control over what is installed in the container.\n\nNext we copy all the files from the repository into the container. This is done with the COPY command. This way, when the container is started, all the files from the repository are available inside the container.\n\nCOPY --chown=${NB_USER} . ${HOME}\nIf you were to build a container not for the GitHub repository and Binder, but for use in the high-performance computing cluster or on your own computer, you would probably want to copy only the essential files and not the whole repository. You would also not include the data or the analysis code, but would only include configuration files that define which software should be inside the container.\n\nThe last line of the Dockerfile is the RUN command that installs R packages that are not part of the Rocker container image. You can find out empirically which packages are missing by trying to run your code in the container and seeing which packages are missing. Or you can read the source code of the container creation script (e.g. for Rocker Verse, Rocker Tidyverse, or Rocker Geospatial) and see which packages are pre-installed there.\n\nRUN if [ -f install.R ]; then R --quiet -f install.R; fi\n\n\ninstall.R\ninstall.R file contains the R code that installs the GridSample package. This package is not included in the Rocker container image, so we need to install it manually. In this case, a very specific version of the package is installed, because this specific version had a certain bug fixed.\nremotes::install_github(\"nrukt00vt/gridsample@03c2d10134cbf94dc8c7452c3a5967c8624e260a\", force = TRUE, dependencies = TRUE)\nHowever, this install.R file can contain any R code. You can install packages in all the usual ways, for example:\nTo install from CRAN:\ninstall.packages(\"ggplot2\")\nTo installs a certain package version from CRAN, can also install versions of packages that were archived on CRAN (by default, installs the latest available version, even if the package is archived):\nremotes:install_version(\"MortalitySmooth\")\nTo install any package from GitHub:\nremotes::install_github(\"MPIDR/rsocsim\")",
     "crumbs": [
-      "0. Get Familiar with Docker and Binder"
+      "Get Familiar with Docker and Binder"
     ]
   }
 ]
