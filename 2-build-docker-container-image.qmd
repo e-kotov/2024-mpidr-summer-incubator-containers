@@ -24,7 +24,7 @@ Depending on which archived package you selected, you must first find out which 
 
 So your options are:
 
--   Use more recent R version (and consequently Rocker image) and try to installing `MoralitySmooth` using `remotes::install_version()` function.
+-   Use more recent R version (and consequently Rocker image) and try to installing `MortalitySmooth` using `remotes::install_version()` function.
 
 -   Use strictly the R version that was released just before the package was archived and try to install the package using `install.packages()` function.
 
