@@ -1,5 +1,5 @@
 ---
-title: "2. Build a Docker container image"
+title: "2. 2. Build your own Docker container image and run it (locally or in the academic cluster)"
 from: markdown+emoji
 code-annotations: hover
 ---
