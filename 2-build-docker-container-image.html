@@ -317,10 +317,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To install the <code>MortalitySmooth</code> package in the <code>Dockerfile</code> add this in the second line:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> <span class="at">--skipinstalled</span> MortalitySmooth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>So your final <code>Dockerfile</code> should look like this:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/rstudio:4.0.1</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/rstudio:4.0.0</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> <span class="at">--skipinstalled</span> MortalitySmooth</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you were installing two packages, you would add them like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/rstudio:4.0.1</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> rocker/rstudio:4.0.0</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">install2.r</span> <span class="at">--error</span> <span class="at">--skipinstalled</span> MortalitySmooth ggplot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Remember to save the changes.</p>
 </section>
@@ -332,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>And you can quickly check what is in the <code>Dockerfile</code> by running:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> Dockerfile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To build the Docker image, run the following command in the terminal:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> r-mort-smooth:4.0.1 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build <span class="at">-t</span> r-mort-smooth:4.0.0 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Let us break down this command:</p>
 <table class="caption-top table">
 <colgroup>
@@ -351,8 +351,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>This is the base command used to build a Docker image from a Dockerfile.</td>
 </tr>
 <tr class="even">
-<td><code>-t r-mort-smooth:4.0.1</code></td>
-<td>The <code>-t</code> flag stands for “tag”. <code>r-mort-smooth:4.0.1</code> is the name and tag given to the image. <code>r-mort-smooth</code> is the name of the image. <code>4.0.1</code> is the tag, which often represents the version of the image. You can choose any name and version here can also be anything, but we use the same version we used in the <code>Dockerfile</code> just so that we know which R version is going to be inside the container.</td>
+<td><code>-t r-mort-smooth:4.0.0</code></td>
+<td>The <code>-t</code> flag stands for “tag”. <code>r-mort-smooth:4.0.0</code> is the name and tag given to the image. <code>r-mort-smooth</code> is the name of the image. <code>4.0.0</code> is the tag, which often represents the version of the image. You can choose any name and version here can also be anything, but we use the same version we used in the <code>Dockerfile</code> just so that we know which R version is going to be inside the container.</td>
 </tr>
 <tr class="odd">
 <td><code>.</code></td>
@@ -367,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="run-the-docker-container-from-your-image" class="level3">
 <h3 class="anchored" data-anchor-id="run-the-docker-container-from-your-image">Run the Docker Container from your Image</h3>
 <p>Now you have a Docker container image with the <code>MortalitySmooth</code> package installed. To run it, you can use the <code>docker run</code> command in the following way:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-p</span> 8787:8787 <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/rstudio/my-project <span class="at">-e</span> PASSWORD=somepass r-mort-smooth:4.0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-p</span> 8787:8787 <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/rstudio/my-project <span class="at">-e</span> PASSWORD=somepass r-mort-smooth:4.0.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Let us break down this command:</p>
 <table class="caption-top table">
 <thead>
@@ -398,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Sets the password. Better use a good password, even though you are running locally.</td>
 </tr>
 <tr class="even">
-<td><code>r-mort-smooth:4.0.1</code></td>
+<td><code>r-mort-smooth:4.0.0</code></td>
 <td>The final part is the name and tag that you assigned earlier when you were creating the container image.</td>
 </tr>
 </tbody>
