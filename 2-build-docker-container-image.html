@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Depending on which archived package you selected, you must first find out which <a href="https://rocker-project.org/" target="_blank">Rocker image</a> version to use. For example, the package <code>MortalitySmooth</code> was archived on 2020-12-10. If you would use Rocker RStudio container image with R v4.1.0 released on 18th May 2021, the R package installer in the container will think it is 18th May 2021 and will try to install the package from the CRAN snapshot from that date. Since <code>MortalitySmooth</code> was archived after that date, you will not be able to install it using the standard <code>install.packages()</code> function. You will have to use <code>remotes::install_version()</code> function from the <code>remotes</code> package. Use internet search to find the release dates of R versions released just before the date the R package was archived. Rocker images are configured to use CRAN snapshot on the date of the R version release.</p>
 <p>So your options are:</p>
 <ul>
-<li><p>Use more recent R version (and consequently Rocker image) and try to installing <code>MoralitySmooth</code> using <code>remotes::install_version()</code> function.</p></li>
+<li><p>Use more recent R version (and consequently Rocker image) and try to installing <code>MortalitySmooth</code> using <code>remotes::install_version()</code> function.</p></li>
 <li><p>Use strictly the R version that was released just before the package was archived and try to install the package using <code>install.packages()</code> function.</p></li>
 </ul>
 </section>
