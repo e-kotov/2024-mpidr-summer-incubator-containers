@@ -105,14 +105,14 @@ RUN install2.r --error --skipinstalled MortalitySmooth
 So your final `Dockerfile` should look like this:
 
 ``` dockerfile
-FROM rocker/rstudio:4.0.1
+FROM rocker/rstudio:4.0.0
 RUN install2.r --error --skipinstalled MortalitySmooth
 ```
 
 If you were installing two packages, you would add them like this:
 
 ``` dockerfile
-FROM rocker/rstudio:4.0.1
+FROM rocker/rstudio:4.0.0
 RUN install2.r --error --skipinstalled MortalitySmooth ggplot2
 ```
 
@@ -141,7 +141,7 @@ cat Dockerfile
 To build the Docker image, run the following command in the terminal:
 
 ``` bash
-docker build -t r-mort-smooth:4.0.1 .
+docker build -t r-mort-smooth:4.0.0 .
 ```
 
 Let us break down this command:
@@ -149,7 +149,7 @@ Let us break down this command:
 | part of command          | what it does                                                                                                                                                                                                                                                                                                                                                                                                  |
 |--------------------|--------------------------------------------------|
 | `docker build`           | This is the base command used to build a Docker image from a Dockerfile.                                                                                                                                                                                                                                                                                                                                      |
-| `-t r-mort-smooth:4.0.1` | The `-t` flag stands for "tag". `r-mort-smooth:4.0.1` is the name and tag given to the image. `r-mort-smooth` is the name of the image. `4.0.1` is the tag, which often represents the version of the image. You can choose any name and version here can also be anything, but we use the same version we used in the `Dockerfile` just so that we know which R version is going to be inside the container. |
+| `-t r-mort-smooth:4.0.0` | The `-t` flag stands for "tag". `r-mort-smooth:4.0.0` is the name and tag given to the image. `r-mort-smooth` is the name of the image. `4.0.0` is the tag, which often represents the version of the image. You can choose any name and version here can also be anything, but we use the same version we used in the `Dockerfile` just so that we know which R version is going to be inside the container. |
 | `.`                      | this very important `.` (dot) specifies the build context, which is the current directory. Docker will look for a `Dockerfile` in this directory to create the image.                                                                                                                                                                                                                                         |
 
 The container image will take about 3-6 minutes to build.
@@ -166,7 +166,7 @@ Now you have a Docker container image with the `MortalitySmooth` package install
 To run it, you can use the `docker run` command in the following way:
 
 ``` bash
-docker run --rm -p 8787:8787 -v $(pwd):/home/rstudio/my-project -e PASSWORD=somepass r-mort-smooth:4.0.1
+docker run --rm -p 8787:8787 -v $(pwd):/home/rstudio/my-project -e PASSWORD=somepass r-mort-smooth:4.0.0
 ```
 
 Let us break down this command:
@@ -178,7 +178,7 @@ Let us break down this command:
 | `-p 8787:8787`                       | This flag specifies that the port inside the container is mapped to your computer, so that you can access RStudio in a web browser. Briefly, RStudio in a container is actually a server software that works over a network and it is not exactly the same as RStudio on your laptop, even though it feels that way. This is why ports are necessary, but do not worry about it too much at the moment.                                                                                                                                           |
 | `-v $(pwd):/home/rstudio/my-project` | This maps the current directory (designated by `$(pwd)`) from which you are running the command to a folder inside the container (`/home/rstudio/my-project`). Thanks to this, when you use the containerized RStudio, you will have access to your local folder and will be able to run scripts and edit them. The `/home/rstudio/` is default for Rocker containers, and the `my-project` part can be replaced with anything. Instead of the current directory (designated by `$(pwd)`) you can provide `/path/to/any/folder/on/your/computer`. |
 | `-e PASSWORD=somepass`               | Sets the password. Better use a good password, even though you are running locally.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `r-mort-smooth:4.0.1`                | The final part is the name and tag that you assigned earlier when you were creating the container image.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `r-mort-smooth:4.0.0`                | The final part is the name and tag that you assigned earlier when you were creating the container image.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 The container starts almost instantly. In case with Play with Docker service, you will see a button with a port pop-up:
 
