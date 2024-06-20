@@ -186,6 +186,9 @@ The container starts almost instantly. In case with Play with Docker service, yo
 
 Click on the port number to open RStudio in a new tab. Use the default login `rstudio` and the password you set in the `docker run` command.
 
+If you are following along on your own computer, you can open a web browser and go to `http://localhost:8787` to access RStudio. Use the default login `rstudio` and the password you set in the `docker run` command.
+
+
 You can now use RStudio in the browser to check if the `MortalitySmooth` package is installed by running:
 
 ``` r
