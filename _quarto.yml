@@ -29,7 +29,7 @@ website:
 page-navigation: true
 page-footer: 
   border: false
-  left: "Copyright 2024, Egor Kotov" 
+  left: "Copyright 2024, Egor Kotov & Esther Denecke" 
   right: 
     - icon: github
       href: https://github.com/e-kotov/2024-mpidr-summer-incubator-containers

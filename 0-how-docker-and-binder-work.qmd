@@ -94,7 +94,7 @@ To install from CRAN:
 install.packages("ggplot2")
 ```
 
-To installs a certain package version from CRAN, can also install versions of packages that were archived on CRAN (by default, installs the latest available version, even if the package is archived):
+To install a certain package version from CRAN or install versions of packages that were archived on CRAN (by default, installs the latest available version, even if the package is archived):
 
 ```r
 remotes:install_version("MortalitySmooth")

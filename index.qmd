@@ -43,13 +43,13 @@ For macOS we also highly recommend the free version of [OrbStack](https://orbsta
 
 -   Able to explain the concept of containers and their role in computational reproducibility and discuss further reproducibility challenges
 
--   Able to run create a GitHub repository that can be executed in the cloud using [Binder](https://mybinder.org/){target="_blank"}
+-   Able to create a GitHub repository that can be executed in the cloud using [Binder](https://mybinder.org/){target="_blank"}
 
 -   Able to create a Docker container with RStudio and R of a specific version and with specific archived R packages
 
 ## What to do in the workshop
 
-The tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal) commands, as well as what you want to achieve.
+The tasks that you can do in the workshop depend on your skill level with GitHub and command line (terminal), as well as what you want to achieve.
 
 |                                                                                                                                                     |                                                                                            |                                                                                                                     |
 |--------------------------|------------------|-------------------------------------|
