@@ -33,7 +33,7 @@ affiliations:
     url: https://www.uni-rostock.de/
 ---
 
-This website provides supporting materials for the workshop **Containers for Computational Reproducibility** which is part of the [Population and Social Data Science Summer Incubator Program 2024](https://www.demogr.mpg.de/en/news_events_6123/news_press_releases_4630/news/population_and_social_data_science_summer_incubator_program_2024_13112){target="_blank"} organized by the [Max Planck Institute for Demographic Research](https://demogr.mpg.de/){target="_blank"} in Rostock, Germany.
+This website provides supporting materials for the workshop **Containers for Computational Reproducibility** which is part of the [Population and Social Data Science Summer Incubator Program 2024](https://www.demogr.mpg.de/en/news_events_6123/news_press_releases_4630/news/population_and_social_data_science_summer_incubator_program_2024_13112){target="_blank"} organized by the [Max Planck Institute for Demographic Research](https://demogr.mpg.de/){target="_blank"} in Rostock, Germany. This tutorial is [licensed under CC0](license.qmd).
 
 To participate in the workshop, we recommend that you have a [GitHub](https://github.com/){target="_blank"} account and a [Docker Hub](https://hub.docker.com/){target="_blank"} account.
 You may also want to install [Docker](https://docs.docker.com/get-docker/){target="_blank"} on your computer (for Windows, macOS or Linux).

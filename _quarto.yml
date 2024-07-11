@@ -8,6 +8,16 @@ website:
   title: "Containers for Computational Reproducibility"
   site-url: https://e-kotov.github.io/2024-mpidr-summer-incubator-containers/
   repo-url: https://github.com/e-kotov/2024-mpidr-summer-incubator-containers
+  page-navigation: true
+  page-footer: 
+      border: true
+      left: "Copyright 2024, Egor Kotov & Esther Denecke" 
+      center:
+       - license.qmd
+      right: 
+        - icon: github
+          href: https://github.com/e-kotov/2024-mpidr-summer-incubator-containers
+
   sidebar:
     style: "docked"
     search: true
@@ -26,13 +36,7 @@ website:
           - 1-reproducible-github-repo-in-binder.qmd
           - 2-build-docker-container-image.qmd
 
-page-navigation: true
-page-footer: 
-  border: false
-  left: "Copyright 2024, Egor Kotov & Esther Denecke" 
-  right: 
-    - icon: github
-      href: https://github.com/e-kotov/2024-mpidr-summer-incubator-containers
+
 
 format:
   html:
